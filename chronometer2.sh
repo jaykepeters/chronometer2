@@ -412,41 +412,16 @@ if [[ $# = 0 ]]; then
   echo ${pid} > ./chronometer2.pid
 
   # Check for updates
-  echo "- Checking for Chronometer2 version file..."
   if [ -e "piHoleVersion" ]; then
-    echo "  - Chronometer2 version file found... deleting."
     rm piHoleVersion
-  else
-    echo "  - Chronometer2 version file not found."
   fi
 
   # Get our information for the first time
-  echo "- Gathering system information..."
   GetSystemInformation
-  echo "- Gathering Pi-hole information..."
   GetPiholeInformation
-  echo "- Gathering network information..."
   GetNetworkInformation
-  echo "- Gathering version information..."
   GetVersionInformation
-  echo "  - Pi-hole Core v$piholeVersion"
-  echo "  - Web Admin v$webVersion"
-  echo "  - FTL v$ftlVersion"
-  echo "  - Chronometer2 v$chronometer2Version"
-  echo "- Checking for update information..."
   GetVersionInformation
-  echo "  - $versionStatus"
-  echo ""
-  printf "Chronometer2 will start in"
-
-  for i in 5 4 3 2 1
-  do
-    printf " $i..."
-    sleep 1
-  done
-
-  printf " now!"
-  # Run Chronometer2
   normalChrono
 fi
 
